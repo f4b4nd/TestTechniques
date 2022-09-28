@@ -2,11 +2,12 @@ import { describe, expect, it } from '@jest/globals'
 
 import { 
     getBillChange,
+    getNumberOfBills,
     getLastDigit,
 } from './main'
 
 describe('Given an amount of money', () => {
-    it('should return change with minimum of Bills', () => {
+    it('should return combination of change with minimum of bills', () => {
 
         const amount1 = 46, res1 = {ten: 4, five: 0, two: 3}
         expect(getBillChange(amount1)).toEqual(res1)
@@ -25,6 +26,25 @@ describe('Given an amount of money', () => {
 
     })
 
+})
+
+describe('Given an amount of money and a billValue', () => {
+    it('should return the closest number of bills, and leave room to be able to complete with other bill values', () => {
+
+        const amount1 = 52, billValue1 = 10, res1 = 5
+        expect(getNumberOfBills(amount1, billValue1).numberOfBills).toEqual(res1)
+
+        const amount2 = 103, billValue2 = 10, res2 = 9
+        expect(getNumberOfBills(amount2, billValue2).numberOfBills).toEqual(res2)
+
+        const amount3 = 5, billValue3 = 5, res3 = 1
+        expect(getNumberOfBills(amount3, billValue3).numberOfBills).toEqual(res3)
+
+        const amount4 = 11, billValue4 = 5, res4 = 1
+        expect(getNumberOfBills(amount4, billValue4).numberOfBills).toEqual(res4)
+    
+    })
+    
 })
 
 describe('Given an digit', () => {

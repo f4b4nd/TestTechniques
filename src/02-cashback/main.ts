@@ -6,10 +6,7 @@ const getDivision = (a: number, b: number) => {
 	}
 }
 
-export const getLastDigit = (int: number) => {
-	if (int <= 0) return NaN
-	return int >= 10 ? int % 10 : int   
-}
+export const getLastDigit = (int: number) => int > 0 ? int % 10 : NaN
 
 export const getNumberOfBills = (amount: number, billValue: number) => {
 
@@ -33,7 +30,7 @@ export const getNumberOfBills = (amount: number, billValue: number) => {
 
 export const getBillChange = (amount: number) => {
 
-	if (amount === 1 || amount === 3) return {}
+	if (amount <= 0 || amount === 1 || amount === 3) return {}
 
 	const ten = getNumberOfBills(amount, 10)
 	const five = getNumberOfBills(ten.amountLeft, 5)
