@@ -35,13 +35,15 @@ console.log('#arr :', arrNoDuplicates, '#k :', k)
 console.log('all pairs', possiblePairs)
 console.log('selected pair', selectedPair)
 
+const getPairIndexes = (pair: Pair | []) => {
 
-if (selectedPair[0] && selectedPair[1]) {
+    if (!pair[0] || !pair[1]) return []
 
-    const selectedPairIndexes = [
-        getArrayIndexFromValue(arr, selectedPair[0]),
-        getArrayIndexFromValue(arr, selectedPair[1])
+    return [
+        getArrayIndexFromValue(arr, pair[0]),
+        getArrayIndexFromValue(arr, pair[1])
     ]
     
-    console.log('selected pair indexes', selectedPairIndexes)
 }
+
+console.log('selected pair indexes', getPairIndexes(selectedPair))
