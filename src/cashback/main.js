@@ -7,18 +7,17 @@ Example :
 	Total = 45€
 	Possible responses : [ 4*ten + 1*five ; 9*five ; 20*two + 1*five ; 2*ten + 1*five + 10*two, ... ]
 	Optimized response = 4*ten + 1*five
-
 */
 
 
-const getAllCombinations = (amount) => {}
-
-const getCoinsCount = (amount, currency) => {
+const getCoinsCountFromCurrency = (amount, currency) => {
 	
-	const currencyLabels = {
-		10 : 'ten',
-		5 : 'five',
-		2 : 'two',
+	
+	if (currency > amount) {
+		return {
+			coinsCount : 0,
+			moneyLeft : amount
+		}
 	}
 	
 	let coinsCount = 0
@@ -34,7 +33,7 @@ const getCoinsCount = (amount, currency) => {
 	}
 	
 	return {
-		[currencyLabels[currency]] : coinsCount,
+		coinsCount,
 		moneyLeft
 	}
 
@@ -43,37 +42,32 @@ const getCoinsCount = (amount, currency) => {
 const getCombination = (amount) => {
 	
 	let [ten, five, two] = [0, 0, 0]
-	let currentAmount = amount
+	let moneyLeft = amount
 	
-	while (currentAmount > 0) {
-		console.log('currentAmount', currentAmount)
-		if (currentAmount % 10 === 0) {
-			ten++
-			currentAmount = currentAmount / 10
-		}
-		else if (currentAmount % 5 === 0) {
-			five++
-			currentAmount = currentAmount / 5
-		}
-		else if (currentAmount % 2 === 0) {
-			two++
-			currentAmount = currentAmount / 2
-		}
-		else {
-			break
-		}
+	ten = getCoinsCountFromCurrency(moneyLeft, 10).coinsCount
+	moneyLeft = getCoinsCountFromCurrency(moneyLeft, 10).moneyLeft
+	
+	if (moneyLeft > 0) {
+		five = getCoinsCountFromCurrency(moneyLeft, 5).coinsCount
+		moneyLeft = getCoinsCountFromCurrency(moneyLeft, 5).moneyLeft
+	}
+	
+	if (moneyLeft > 0) {
+		two = getCoinsCountFromCurrency(moneyLeft, 2).coinsCount
+		moneyLeft = getCoinsCountFromCurrency(moneyLeft, 2).moneyLeft
 	}
 	
 	return {
 		ten,
 		five,
-		two
+		two,
+		moneyLeft,
 	}
 	
 }
 
-const amount = 45
+const amount = 46
 const combination = getCombination(amount)
 console.log('combination', combination)
-console.log('getCoinsCount', getCoinsCount(52, 5))
+//console.log('getCoinsCount', getCoinsCountFromCurrency(52, 5))
 

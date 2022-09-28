@@ -15,7 +15,7 @@
 
 */
 
-const getArrayWithoutDuplicates = (arr) => {
+export const getArrayWithoutDuplicates = (arr) => {
 
 	return arr.reduce((acc, currValue) => (
 		acc.includes(currValue) ? acc : [...acc, currValue]
