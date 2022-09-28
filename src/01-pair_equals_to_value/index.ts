@@ -3,7 +3,7 @@ import {
     getAllPairsEqualToValue,
     getArrayIndexFromValue,
     getPairWithSmallerIndexes
-} from './main.js'
+} from './main'
 
 /*
 Given an integer "k" and array "arr"
@@ -26,15 +26,22 @@ const k = 7
 const arr = [5, 3, 4, 2, 1, 3, 6, 4, 2, 5]
 
 /*****/
+
 const arrNoDuplicates = getArrayWithoutDuplicates(arr)
 const possiblePairs = getAllPairsEqualToValue(arrNoDuplicates, k)
 const selectedPair = getPairWithSmallerIndexes(arrNoDuplicates, possiblePairs)
-const foundIndexes = [
-	getArrayIndexFromValue(arr, selectedPair[0]),
-	getArrayIndexFromValue(arr, selectedPair[1])
-]
 
 console.log('#arr :', arrNoDuplicates, '#k :', k)
 console.log('all pairs', possiblePairs)
 console.log('selected pair', selectedPair)
-console.log('found indexes', foundIndexes)
+
+
+if (selectedPair[0] && selectedPair[1]) {
+
+    const selectedPairIndexes = [
+        getArrayIndexFromValue(arr, selectedPair[0]),
+        getArrayIndexFromValue(arr, selectedPair[1])
+    ]
+    
+    console.log('selected pair indexes', selectedPairIndexes)
+}

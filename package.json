@@ -1,20 +1,21 @@
 {
-  "name": "tests_techniques",
+  "name": "tests_techniques_js",
   "author": "Fabien",
   "version": "1.0.0",
   "license": "MIT",
   "type": "module",
   "scripts": {
-
-    "test-01": "jest -- ./src/pairsEqualsToValue/*.test.js",
-    "script-01": "node ./src/pairsEqualsToValue/index.js",
-    
-    "script-02": "node ./src/cashback/index.js"
-
+    "test-01": "jest -- ./src/01-pair_equals_to_value/*.test.js",
+    "ttest-01": "jest -- ./src/01-pair_equals_to_value/*.test.ts",
+    "script-01": "node ./src/01-pair_equals_to_value/index.js",
+    "tscript-01": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/01-pair_equals_to_value/index.ts",
+    "script-02": "node ./src/02-cashback/index.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.3",
     "babel-jest": "^29.1.0",
-    "jest": "^29.1.0"
+    "jest": "^29.1.0",
+    "ts-jest": "^29.0.2",
+    "ts-node": "^10.9.1"
   }
 }

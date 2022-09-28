@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "module": "ESNext",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "moduleResolution": "Node",
+      "esModuleInterop": true,
+      "allowJs": false,
+      "forceConsistentCasingInFileNames": true, 
+      "strict": true,
+    },
+    "ts-node": {
+        "esm": true
+    },
+}
