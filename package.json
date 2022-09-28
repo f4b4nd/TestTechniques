@@ -9,7 +9,8 @@
     "test-01": "jest -- ./src/01-*/*.test.ts",
     "script-01": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/01-*/index.ts",
 
-    "script-02": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/02-*/index.ts"
+    "script-02": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/02-*/index.ts",
+    "test-02": "jest -- ./src/02-*/*.test.ts"
 
   },
   "devDependencies": {
