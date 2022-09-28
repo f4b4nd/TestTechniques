@@ -1,6 +1,6 @@
 module.exports = {
     transform : {
-        "^.+\\.(js|jsx)$": "babel-jest",
-        "^.+\\.(ts|tsx)$": "ts-jest",
+        "^.+\\.(js|js)$": "babel-jest",
+        "^.+\\.(ts|ts)$": "ts-jest",
     }
 }

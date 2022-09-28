@@ -5,11 +5,12 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "test-01": "jest -- ./src/01-pair_equals_to_value/*.test.js",
-    "ttest-01": "jest -- ./src/01-pair_equals_to_value/*.test.ts",
-    "script-01": "node ./src/01-pair_equals_to_value/index.js",
-    "tscript-01": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/01-pair_equals_to_value/index.ts",
-    "script-02": "node ./src/02-cashback/index.js"
+
+    "test-01": "jest -- ./src/01-*/*.test.ts",
+    "script-01": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/01-*/index.ts",
+
+    "script-02": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/02-*/index.ts"
+
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.3",

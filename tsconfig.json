@@ -9,8 +9,13 @@
       "allowJs": false,
       "forceConsistentCasingInFileNames": true, 
       "strict": true,
+      "isolatedModules": true
     },
     "ts-node": {
-        "esm": true
+        "esm": true,
+        "files": true
     },
+    "exclude": [
+      "node_modules"
+    ]
 }

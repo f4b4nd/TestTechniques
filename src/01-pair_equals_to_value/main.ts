@@ -1,5 +1,4 @@
-
-export const getArrayWithoutDuplicates = <T>(arr: Array<T>): Array<T> => {
+export const getArrayWithoutDuplicates = <T>(arr: Array<T>) => {
 
 	return arr.reduce((acc, currValue) => (
 		acc.includes(currValue) ? acc : [...acc, currValue]
@@ -7,10 +6,10 @@ export const getArrayWithoutDuplicates = <T>(arr: Array<T>): Array<T> => {
 
 }
 
-export const getAllPairsEqualToValue = (arr: Array<number>, targetValue: number) => {
+export const getAllPairsEqualToValue = (arr: number[], targetValue: number) => {
 
-	const pairsEqualTargetValue: Array<Pair> = []
-	
+	const pairsEqualTargetValue: Pair[] = []
+
 	arr.forEach((x, _, t) => {
 		t.forEach(y => {
 			if (x + y === targetValue && x !== y) {
@@ -18,11 +17,11 @@ export const getAllPairsEqualToValue = (arr: Array<number>, targetValue: number)
 			}
 		})
 	})
-	
+
 	return pairsEqualTargetValue
 }
 
-export const getArrayIndexFromValue = (arr: Array<number>, arrValue: number) => {
+export const getArrayIndexFromValue = (arr: number[], arrValue: number) => {
 
 	const firstIndexMatched = arr.reduce((prev, curr, idx) => {
 		if(isNaN(prev)) {
