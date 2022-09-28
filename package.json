@@ -5,9 +5,12 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "main": "node main.js",
+
     "test-01": "jest -- ./src/pairsEqualsToValue/*.test.js",
-    "script-01": "node ./src/pairsEqualsToValue/index.js"
+    "script-01": "node ./src/pairsEqualsToValue/index.js",
+    
+    "script-02": "node ./src/cashback/index.js"
+
   },
   "devDependencies": {
     "@babel/preset-env": "^7.19.3",

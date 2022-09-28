@@ -40,7 +40,7 @@ describe('Given an array of integers and an integer k', () => {
     })
 })
 
-describe('Given an array of integers A and an array of pairs P (its values are inside A)', () => {
+describe('Given an array of integers "A" and an array of pairs "P" (where all pairs are sub-arrays of A)', () => {
     it('should return the pair in P with smaller indexes in A', () => {
 
         const arr1 = [4, 6, 9], pairs1 = [[4, 9], [9, 6], [4, 6], [6,9]], res1 = [4, 6]

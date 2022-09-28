@@ -1,6 +1,14 @@
 # All technical tests in Javascript / Typescript
 
-# Run Tests
+## Run Tests
 This project uses Jest Testing library
-Tests are launched for every specific project
-Run `npm run test-01 `
+
+Every folder project works individually
+
+Run : `npm run test-01 `
+
+---
+## Run scripts
+Every folder project works individually
+
+Run : `npm run script-01 `
