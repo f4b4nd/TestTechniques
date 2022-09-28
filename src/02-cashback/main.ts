@@ -1,38 +1,47 @@
-// quotient = dividend / divisor 
-export const findGreatestDivisible = (int: number) => {
-
-	let divisors_queue = [10, 5, 2]
-
-	let currentDivisor = divisors_queue[0]
-
-	let dividend = getDivision(int, 10).roundedQuotient // 10
-	let remainder = getDivision(int, 10).remainder
-
-	const equals1or3 = (r: number) => [1, 3].includes(r)
-
-	if (remainder > 0) {
-
-		// 11 = dividend:11 / divisior:10
-		if (equals1or3(remainder)) {
-			int = int - 10 // 90
-			dividend = getDivision(int, 10).roundedQuotient // 90/10=9
-			remainder = getDivision(int, 10).remainder // 13
-		}
-
-		else {
-			dividend = getDivision(int, 10).roundedQuotient // 90/10 = 9
-			//remainder = getDivision(int, 10)
-		}
-	}
-}
-
 const getDivision = (a: number, b: number) => {
 	return {
-		quotient:  a / b,
-		roundedQuotient: Math.floor(a / b),
+		quotient: b !== 0 ? a / b : NaN,
+		quotientFloor: b !== 0 ? Math.floor(a / b) : NaN,
 		remainder:  a % b,
 	}
 }
+
+const getLastDigit = (int: number) => {
+	if (int <= 0) return NaN
+	return int >= 10 ? int % 10 : int   
+}
+
+export const getNumberOfBills = (amount: number, billValue: number) => {
+
+	const division = getDivision(amount, billValue)
+	const quotientFloor = division.quotientFloor
+	const remainder = division.remainder
+
+	const remainderLastDigit = getLastDigit(remainder)
+	const remainderEndsWithOneOrThree = remainderLastDigit === 1 || remainderLastDigit === 3
+
+	return {
+		amount,
+		billValue,
+		numberOfBills: remainderEndsWithOneOrThree ? quotientFloor - 1 : quotientFloor,
+	}
+
+}
+
+export const getBillChange = (amount: number) => {
+
+	const ten = getNumberOfBills(amount, 10)
+	const five = getNumberOfBills(ten.amount - ten.numberOfBills * ten.billValue, 5)
+	const two = getNumberOfBills(five.amount - five.numberOfBills * five.billValue, 2)
+
+	return {
+		ten: ten.numberOfBills,
+		five: five.numberOfBills,
+		two: two.numberOfBills,
+	}
+
+}
+
 
 const steps = [
 	// solution: 46 = 4*dix + 3*deux
@@ -122,14 +131,3 @@ const steps3 = [
 
 ]
 
-const defaultResults = {
-	2 : { ten: 0, five: 0, two: 1 },
-	4 : { ten: 0, five: 0, two: 2 },
-	5 : { ten: 0, five: 1, two: 0 },
-	6 : { ten: 0, five: 0, two: 3 },
-	7 : { ten: 0, five: 1, two: 1 },
-	8 : { ten: 0, five: 0, two: 4 },
-	9 : { ten: 0, five: 1, two: 2 },
-	11 : { ten: 0, five: 1, two: 3 },
-	13 : { ten: 0, five: 1, two: 4 },
-}

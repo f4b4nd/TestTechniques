@@ -1,6 +1,5 @@
 import {
-    getCoinsCountFromCurrency,
-    getCombination 
+	getBillChange
 } from "./main"
 
 /*
@@ -50,9 +49,7 @@ Example :
 	
 */
 
-const amount = 46
-console.log('amount', amount)
-const combination = getCombination(amount)
-console.log('combination', combination)
-//console.log('getCoinsCount', getCoinsCountFromCurrency(52, 5))
+const amount = 89
+const billChange = getBillChange(amount)
+console.log('amount', amount, 'billChange', billChange)
 
