@@ -31,15 +31,23 @@ export const getNumberOfBills = (amount: number, billValue: number) => {
 export const getBillChange = (amount: number) => {
 
 	if (amount <= 0 || amount === 1 || amount === 3) return {}
+	
+	const availableBillsValues = [10, 5, 2]
 
-	const ten = getNumberOfBills(amount, 10)
-	const five = getNumberOfBills(ten.amountLeft, 5)
-	const two = getNumberOfBills(five.amountLeft, 2)
+	let amountLeft = amount
 
-	return {
-		ten: ten.numberOfBills,
-		five: five.numberOfBills,
-		two: two.numberOfBills,
+	let i = 0
+	let billChange = {}
+
+	while (amountLeft > 0 && i < availableBillsValues.length) {
+
+		const change = getNumberOfBills(amountLeft, availableBillsValues[i])
+		amountLeft = change.amountLeft
+		billChange = {...billChange, [`${change.billValue}€`]: change.numberOfBills}
+		i++
+
 	}
+
+	return billChange
 
 }

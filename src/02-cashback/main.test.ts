@@ -9,19 +9,19 @@ import {
 describe('Given an amount of money', () => {
     it('should return combination of change with minimum of bills', () => {
 
-        const amount1 = 46, res1 = {ten: 4, five: 0, two: 3}
+        const amount1 = 46, res1 = {'10€': 4, '5€': 0, '2€': 3}
         expect(getBillChange(amount1)).toEqual(res1)
 
-        const amount2 = 203, res2 = {ten: 19, five: 1, two: 4}
+        const amount2 = 203, res2 = {'10€': 19, '5€': 1, '2€': 4}
         expect(getBillChange(amount2)).toEqual(res2)
 
-        const amount3 = 89, res3 = {ten: 8, five: 1, two: 2}
+        const amount3 = 89, res3 = {'10€': 8, '5€': 1, '2€': 2}
         expect(getBillChange(amount3)).toEqual(res3)
 
         const amount4 = 1, res4 = {}
         expect(getBillChange(amount4)).toEqual(res4)
 
-        const amount5 = 9, res5 = {ten: 0, five: 1, two: 2}
+        const amount5 = 9, res5 = {'10€': 0, '5€': 1, '2€': 2}
         expect(getBillChange(amount5)).toEqual(res5)
 
     })

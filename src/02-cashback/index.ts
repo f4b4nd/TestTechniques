@@ -31,7 +31,7 @@ import {
 
 */
 
-const amount = 57
+const amount = 203
 const billChange = getBillChange(amount)
 console.log('amount', amount, 'billChange', billChange)
 
