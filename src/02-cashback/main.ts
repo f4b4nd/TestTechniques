@@ -51,3 +51,40 @@ export const getBillChange = (amount: number) => {
 	return billChange
 
 }
+
+
+export const getBillChangeRecursive = (amount: number): any[] => {
+
+	const billValues = [2, 5, 10]
+
+	const amountMatched = billValues.find(v => v === amount)
+
+	//console.log('amount', amount)
+	
+	if (amount === 1) {
+		return [[NaN]]
+	}
+
+	if (amountMatched) return [amountMatched]
+
+	let acc2:any = [], acc5:any = [], acc10:any = []
+
+	if (amount - 2 > 0) {
+		acc2 = [2, ...getBillChangeRecursive(amount - 2)]
+	}
+
+	if (amount - 5 > 0) {
+		acc5 = [5, ...getBillChangeRecursive(amount - 5)]
+	}
+
+	if (amount - 10 > 0) {
+		acc10 = [10, ...getBillChangeRecursive(amount - 10)]
+	}
+
+	return [
+		[acc2],
+		[acc5],
+		[acc10]
+	]
+
+}

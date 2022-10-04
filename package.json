@@ -10,6 +10,8 @@
     "script-01": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/01-*/index.ts",
 
     "script-02": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/02-*/index.ts",
+    "script-02b": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/02-*/index2.ts",
+    "script-02js": "node ./src/02-*/index.js",
     "test-02": "jest -- ./src/02-*/*.test.ts"
 
   },
