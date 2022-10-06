@@ -1,10 +1,6 @@
 const getNextRow = (arr: number[]) => {
-    const acc: number[] = arr.map((v, idx, t) => {
-
-        if (idx === 0) return v
-
-        return t[idx] + t[idx -1]
-
+    const acc: number[] = arr.map((_, idx, t) => {
+        return idx === 0 ? t[idx] : t[idx] + t[idx-1]
     })
     return [...acc, 1]
 }

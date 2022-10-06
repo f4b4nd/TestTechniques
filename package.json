@@ -13,7 +13,10 @@
     "test-02": "jest -- ./src/02-*/*.test.ts",
 
     "script-03": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/03-*/index.ts",
-    "test-03": "jest -- ./src/03-*/*.test.ts"
+    "test-03": "jest -- ./src/03-*/*.test.ts",
+
+    "script-04": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/04-*/index.ts",
+    "test-04": "jest -- ./src/04-*/*.test.ts"
 
   },
   "devDependencies": {
