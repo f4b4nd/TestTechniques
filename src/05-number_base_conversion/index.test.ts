@@ -1,6 +1,8 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { getConvertedFromBase10, getConvertedToBase10 } from '.'
+import { getConvertedFromBase10 } from './fromBase10'
+import { getConvertedToBase10 } from './toBase10'
+
 
 describe('Given an integer n in base 10, and a target base b', () => {
     it('should return n converted in base b', () => {
