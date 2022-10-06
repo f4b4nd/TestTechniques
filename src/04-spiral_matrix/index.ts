@@ -7,9 +7,8 @@ type Position = {
 type Pair = [number, number]
 
 export const getInitialMatrix = (n: number) => {
-    const emptyRow = Array.from(Array(n)).map(v => NaN)
-    const matrix = []
-    for (let i = 0; i < n; i++) matrix.push(emptyRow)
+    const emptyRow = Array(n).fill(NaN)
+    const matrix = Array.from(Array(n)).map(() => emptyRow)
     return matrix
 }
 
@@ -28,34 +27,34 @@ const getSpiralPositionsForMatrix = (matrixLength: number): Position[] => {
     return acc
 }
 
-const getIndexesFromMatrixPosition = (matrixLength: number, position: Position): Pair[] => {
+const getIndexesForMatrixPosition = (matrixLength: number, position: Position): Pair[] => {
     if (position.type === 'row') {
-        const row: Pair[] = Array.from(Array(matrixLength)).map((_, id) => [position.index, id])
+        const rowIndexes: Pair[] = Array.from(Array(matrixLength)).map((_, id) => [position.index, id])
         if (position.sort === -1) {
-            const rowReverse = row.sort((a, b) => a[1] >= b[1] ? -1 : 1)
-            return rowReverse
+            const rowIndexesReverse = rowIndexes.sort((a, b) => a[1] >= b[1] ? -1 : 1)
+            return rowIndexesReverse
         }
-        return row
+        return rowIndexes
     }
     if (position.type === 'col') {
-        const col: Pair[] = Array.from(Array(matrixLength)).map((_, id) => [id, position.index])
+        const colIndexes: Pair[] = Array.from(Array(matrixLength)).map((_, id) => [id, position.index])
         if (position.sort === -1) {
-            const colReverse = col.sort((a, b) => a[0] >= b[0] ? -1 : 1)
-            return colReverse
+            const colIndexesReverse = colIndexes.sort((a, b) => a[0] >= b[0] ? -1 : 1)
+            return colIndexesReverse
         }
-        return col
+        return colIndexes
     }
     return []
 }
 
-export const getSpiralMatrix = (n: number) => {
-    let matrix = getInitialMatrix(n)
-    const matrixPositions = getSpiralPositionsForMatrix(n)
+export const getSpiralMatrix = (matrixLength: number) => {
+    let matrix = getInitialMatrix(matrixLength)
+    const matrixPositions = getSpiralPositionsForMatrix(matrixLength)
     let i = 0
     let p = 0
-    while (i < n*n && p < matrixPositions.length) {
+    while (i < matrixLength ** 2 && p < matrixPositions.length) {
         const position = matrixPositions[p]
-        const pairIndexes = getIndexesFromMatrixPosition(n, position)
+        const pairIndexes = getIndexesForMatrixPosition(matrixLength, position)
         for (const [rowIndex, colIndex] of pairIndexes) {
             if (!matrix[rowIndex][colIndex]) {
                 matrix[rowIndex] = matrix[rowIndex].map((v, idx) => idx === colIndex ? i + 1 : v)
@@ -67,4 +66,4 @@ export const getSpiralMatrix = (n: number) => {
     return matrix
 }
 
-console.log(getSpiralMatrix(5))
+console.log(getSpiralMatrix(6))
