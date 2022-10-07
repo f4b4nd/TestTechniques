@@ -44,7 +44,7 @@ describe('Given an amount of money and a billValue', () => {
         expect(getNumberOfBills(amount4, billValue4).numberOfBills).toEqual(res4)
     
     })
-    
+
 })
 
 describe('Given an digit', () => {

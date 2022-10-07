@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { getSpiralMatrix } from '.'
+import { SpiralSquaredMatrix } from '.'
 
 describe('Given an integer n', () => {
     it('should give a spiral matrix of size n*n', () => {
@@ -10,7 +10,8 @@ describe('Given an integer n', () => {
             [ 15, 24, 25, 20, 7 ],
             [ 14, 23, 22, 21, 8 ],
             [ 13, 12, 11, 10, 9 ]
-          ]
-        expect(getSpiralMatrix(5)).toEqual(expected5)
+        ]
+        const spiralMatrix = new SpiralSquaredMatrix(5)
+        expect(spiralMatrix.calculate()).toEqual(expected5)
     })
 })
