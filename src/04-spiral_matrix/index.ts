@@ -18,11 +18,11 @@ export class SpiralSquaredMatrix {
 
     calculate (): number[][] {
         let matrix = this.getInitialMatrix(this.dimension)
-        const matrixPositions = this.getSpiralPositions(this.dimension)
+        const spiralPositions = this.getSpiralPositions(this.dimension)
         let currentValue = 1
         let p = 0
-        while (currentValue <= this.size && p < matrixPositions.length) {
-            const position = matrixPositions[p]
+        while (currentValue <= this.size && p < spiralPositions.length) {
+            const position = spiralPositions[p]
             const pairIndexes = this.getIndexesForSpiralPosition(this.dimension, position)
             for (const [rowIndex, colIndex] of pairIndexes) {
                 if (!matrix[rowIndex][colIndex]) {
@@ -35,9 +35,9 @@ export class SpiralSquaredMatrix {
         return matrix
     }
 
-    getInitialMatrix (dimension: number): number[][] {
-        const emptyRow = Array(dimension).fill(NaN)
-        const matrix = Array.from(Array(dimension)).map(() => emptyRow)
+    getInitialMatrix (dimension: number) {
+        const emptyRow: number[] = Array(dimension).fill(NaN)
+        const matrix: number[][] = Array(dimension).fill(emptyRow)
         return matrix
     }
  
@@ -57,7 +57,7 @@ export class SpiralSquaredMatrix {
 
     getIndexesForSpiralPosition (dimension: number, position: Position): Pair[] {
         if (position.type === 'row') {
-            const rowIndexes: Pair[] = Array.from(Array(dimension)).map((_, colIndex) => [position.index, colIndex])
+            const rowIndexes: Pair[] = [...Array(dimension)].map((_, colIndex) => [position.index, colIndex])
             if (position.sort === -1) {
                 const rowIndexesReverse = rowIndexes.sort((a, b) => a[1] >= b[1] ? -1 : 1)
                 return rowIndexesReverse
@@ -65,7 +65,7 @@ export class SpiralSquaredMatrix {
             return rowIndexes
         }
         if (position.type === 'column') {
-            const colIndexes: Pair[] = Array.from(Array(dimension)).map((_, rowIndex) => [rowIndex, position.index])
+            const colIndexes: Pair[] = [...Array(dimension)].map((_, rowIndex) => [rowIndex, position.index])
             if (position.sort === -1) {
                 const colIndexesReverse = colIndexes.sort((a, b) => a[0] >= b[0] ? -1 : 1)
                 return colIndexesReverse
