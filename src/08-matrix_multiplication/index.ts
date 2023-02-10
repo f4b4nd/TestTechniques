@@ -71,15 +71,13 @@ export const getMatrixProduct = (a: number[][], b: number[][]) => {
     const dimension = getNumberOfRows(a)
     const matrix: number[][] = getEmptyMatrix(dimension, dimension)
 
-    //matrix[0][0] = x[0][0]*y[0][0] + x[0][1]*y[1][0] + x[0][2]*y[2][0] + x[0][3]*y[3][0]
-    //matrix[1][2] = x[1][0]*y[0][2] + x[1][1]*y[1][2] + x[1][2]*y[2][2] + x[1][3]*y[3][2]
-
     for (let i=0; i < getNumberOfRows(a); i++) {
         for (let j=0; j < getNumberOfColumns(a); j++) {
             let coeff = 0
             for (let v=0; v < getNumberOfColumns(a); v++) {
                 coeff += a[i][v] * b[v][j]
             }
+            // cannot access matrix[i][j] directly without overwrite
             matrix[i] = matrix[i].map((value, idx) => idx === j ? coeff : value)
         }
     }
