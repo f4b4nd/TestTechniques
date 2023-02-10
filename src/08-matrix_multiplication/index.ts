@@ -1,12 +1,14 @@
-const getNumberOfRows = (matrix: number[][]): number => {
+type Matrix = number[][]
+
+const getNumberOfRows = (matrix: Matrix): number => {
     return matrix.length
 }
 
-const getNumberOfColumns = (matrix: number[][]): number => {
+const getNumberOfColumns = (matrix: Matrix): number => {
     return matrix[0].length
 }
 
-const hasFixedColumnsLength = (matrix: number[][]): boolean => {
+const hasFixedColumnsLength = (matrix: Matrix): boolean => {
 
     const columnsLengths = matrix.reduce((acc, curr) => (
         acc.includes(curr.length) ? acc : [...acc, curr.length]
@@ -16,12 +18,12 @@ const hasFixedColumnsLength = (matrix: number[][]): boolean => {
 
 }
 
-const isValidMatrix = (matrix:  number[][]): boolean => {
+const isValidMatrix = (matrix:  Matrix): boolean => {
     // other conditions ?
     return hasFixedColumnsLength(matrix)
 }
 
-const areMultipliable = (a: number[][], b: number[][]) => {
+const areMultipliable = (a: Matrix, b: Matrix) => {
 
     if (!isValidMatrix(a) || !isValidMatrix(b)) return false
 
@@ -29,20 +31,20 @@ const areMultipliable = (a: number[][], b: number[][]) => {
 
 }
 
-const getEmptyMatrix = (nrows: number, ncolumns: number) => {
+const getEmptyMatrix = (nrows: number, ncolumns: number): Matrix  => {
     const rows = Array(ncolumns).fill(NaN)
     const matrix = Array(nrows).fill(rows)
     return matrix
 }
 
-export const getMatrixProduct = (a: number[][], b: number[][]) => {
+export const getMatrixProduct = (a: Matrix, b: Matrix) => {
 
     if (!areMultipliable(a, b)) {
         throw "Cannot multiply"
     }
 
     const [rowLength, colLength] = [getNumberOfRows(a), getNumberOfColumns(b)]
-    const matrix: number[][] = getEmptyMatrix(rowLength, colLength)
+    const matrix = getEmptyMatrix(rowLength, colLength)
 
     for (let i=0; i < getNumberOfRows(a); i++) {
         for (let j=0; j < getNumberOfColumns(b); j++) {
