@@ -20,7 +20,16 @@
 
 
     "script-05": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/05-*/index.ts",
-    "test-05": "jest -- ./src/05-*/*.test.ts"
+    "test-05": "jest -- ./src/05-*/*.test.ts",
+
+    "script-06": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/06-*/index.ts",
+    "test-06": "jest -- ./src/06-*/*.test.ts",
+
+    "script-07": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/07-*/index.ts",
+    "test-07": "jest -- ./src/07-*/*.test.ts",
+
+    "script-08": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/08-*/index.ts",
+    "test-08": "jest -- ./src/08-*/*.test.ts"
 
   },
   "devDependencies": {

@@ -1,7 +1,4 @@
-import {
-	getBillChange,
-	getBillChangeRecursive,
-} from "./main"
+import { getBillChange } from "./main"
 
 import { Change, getOccurencesByValue} from "./recursive"
 

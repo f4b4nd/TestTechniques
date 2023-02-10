@@ -12,3 +12,4 @@ const characterToDigit = (char: string): number => {
     if (matchIndex || matchIndex === 0) return matchIndex
     throw `No character found for char: ${char}`
 }
+

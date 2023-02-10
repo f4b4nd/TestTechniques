@@ -9,7 +9,8 @@
       "allowJs": false,
       "forceConsistentCasingInFileNames": true, 
       "strict": true,
-      "isolatedModules": true
+      "isolatedModules": true,
+      "target": "ESNext"
     },
     "ts-node": {
         "esm": true,
