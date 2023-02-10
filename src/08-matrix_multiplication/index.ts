@@ -25,9 +25,8 @@ const areMultipliable = (a: number[][], b: number[][]) => {
 
     if (!isValidMatrix(a) || !isValidMatrix(b)) return false
 
-    const match1 = getNumberOfColumns(a) === getNumberOfRows(b)
-    const match2 = getNumberOfRows(a) === getNumberOfColumns(b)
-    return match1 && match2
+    return getNumberOfColumns(a) === getNumberOfRows(b)
+
 }
 
 const getEmptyMatrix = (nrows: number, ncolumns: number) => {
@@ -39,14 +38,14 @@ const getEmptyMatrix = (nrows: number, ncolumns: number) => {
 export const getMatrixProduct = (a: number[][], b: number[][]) => {
 
     if (!areMultipliable(a, b)) {
-        return []
+        throw "Cannot multiply"
     }
 
-    const dimension = getNumberOfRows(a)
-    const matrix: number[][] = getEmptyMatrix(dimension, dimension)
+    const [rowLength, colLength] = [getNumberOfRows(a), getNumberOfColumns(b)]
+    const matrix: number[][] = getEmptyMatrix(rowLength, colLength)
 
     for (let i=0; i < getNumberOfRows(a); i++) {
-        for (let j=0; j < getNumberOfColumns(a); j++) {
+        for (let j=0; j < getNumberOfColumns(b); j++) {
             let coeff = 0
             for (let v=0; v < getNumberOfColumns(a); v++) {
                 coeff += a[i][v] * b[v][j]

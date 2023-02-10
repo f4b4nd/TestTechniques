@@ -38,5 +38,21 @@ describe('Given 2 matrixes x and y', () => {
 
         const res2 = [[ 39, -7, 41 ], [ 66, -13, 71 ], [ 40, -25, 85 ]]
         expect(getMatrixProduct(x2, y2)).toEqual(res2)
+
+        const x3 = [
+            [1, -2, 3, 9], 
+            [2, 4, 5, 8],
+            [8, 3, 1, 9],
+        ]
+        
+        const y3 = [
+            [1, -8, 3, 4, 2], 
+            [2, 4, 5, 2, 8],
+            [8, -9, 1, 9, 3],
+            [2, 4, 5, 7, 7],
+        ]
+
+        const res3 = [[ 39, -7, 41, 90, 58], [ 66, -13, 71, 117, 107 ], [ 40, -25, 85, 110, 106 ]]
+        expect(getMatrixProduct(x3, y3)).toEqual(res3)
     })
 })
