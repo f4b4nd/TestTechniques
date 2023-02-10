@@ -3,34 +3,40 @@ import { describe, expect, it } from '@jest/globals'
 import { getMatrixProduct } from './'
 
 
-describe('Given a list of numbers', () => {
-    it('should return a list of the sums of its parts', () => {
-
-        const arr1: number[] = [], res1 = [0]
+describe('Given 2 matrixes x and y', () => {
+    it('should return the matricial product', () => {
         
-        const x = [
+        const x1 = [
             [1, 2, 3, 9], 
             [2, 4, 5, 8],
             [8, 3, 1, 9],
         ]
         
-        const y = [
+        const y1 = [
             [1, 8, 3], 
             [2, 4, 5],
             [8, 9, 1],
             [2, 4, 5],
         ]
-        expect(partsSums(arr1)).toEqual(res1)
 
-        const arr2 = [0, 1, 3, 6, 10], res2 = [20, 20, 19, 16, 10, 0]
-        expect(partsSums(arr2)).toEqual(res2)
+        const res1 = [[ 47, 79, 61 ], [ 66, 109, 71 ], [ 40, 121, 85 ]]
+        expect(getMatrixProduct(x1, y1)).toEqual(res1)
 
-        const arr3 = [1, 2, 3, 4, 5, 6], res3 = [21, 20, 18, 15, 11, 6, 0]
-        expect(partsSums(arr3)).toEqual(res3)
 
-        const arr4 = [744125, 935, 407, 454, 430, 90, 144, 6710213, 889, 810, 2579358]
-        const res4 = [10037855, 9293730, 9292795, 9292388, 9291934, 9291504, 9291414, 9291270, 2581057, 2580168, 2579358, 0]
-        expect(partsSums(arr4)).toEqual(res4)
+        const x2 = [
+            [1, -2, 3, 9], 
+            [2, 4, 5, 8],
+            [8, 3, 1, 9],
+        ]
+        
+        const y2 = [
+            [1, -8, 3], 
+            [2, 4, 5],
+            [8, -9, 1],
+            [2, 4, 5],
+        ]
 
+        const res2 = [[ 39, -7, 41 ], [ 66, -13, 71 ], [ 40, -25, 85 ]]
+        expect(getMatrixProduct(x2, y2)).toEqual(res2)
     })
 })

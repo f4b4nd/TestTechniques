@@ -90,9 +90,6 @@ export const getMatrixProduct = (a: number[][], b: number[][]) => {
 
 
 
-
-
-
 const a = main()
 console.log(a)
 
