@@ -1,60 +1,21 @@
 import { describe, expect, it } from '@jest/globals'
 
-import { getMatrixProduct } from './'
+import { getDecryptedSentence } from './'
 
 
-describe('Given 2 matrixes x and y', () => {
-    it('should return the matricial product', () => {
+describe('Given a sentence and a step', () => {
+    it('should return the caesar cipher decrypted sentence', () => {
         
-        const x1 = [
-            [1, 2, 3, 9], 
-            [2, 4, 5, 8],
-            [8, 3, 1, 9],
-        ]
-        
-        const y1 = [
-            [1, 8, 3], 
-            [2, 4, 5],
-            [8, 9, 1],
-            [2, 4, 5],
-        ]
+        const str1 = "Dear Julius, Let us meet near the Theatre of Pompey at sundown. Ave Caesar!"
+        const step1 = 3
+        const res1 = "Ghdu Mxolxv, Ohw xv phhw qhdu wkh Wkhdwuh ri Srpshundefined dw vxqgrzq. Dyh Fdhvdu!"
+        expect(getDecryptedSentence(str1, step1)).toEqual(res1)
 
-        const res1 = [[ 47, 79, 61 ], [ 66, 109, 71 ], [ 40, 121, 85 ]]
-        expect(getMatrixProduct(x1, y1)).toEqual(res1)
+        const str2 = "Ftq cguow ndaiz raj vgybe ahqd ftq xmlk pas. Ftq ruhq najuzs iulmdpe vgyb cguowxk."
+        const step2 = -12
+        const res2 = "The quick brown fox jumps over the lazy dog. The five boxing wizards jump quickly."
+        expect(getDecryptedSentence(str2, step2)).toEqual(res2)
 
-
-        const x2 = [
-            [1, -2, 3, 9], 
-            [2, 4, 5, 8],
-            [8, 3, 1, 9],
-        ]
-        
-        const y2 = [
-            [1, -8, 3], 
-            [2, 4, 5],
-            [8, -9, 1],
-            [2, 4, 5],
-        ]
-
-        const res2 = [[ 39, -7, 41 ], [ 66, -13, 71 ], [ 40, -25, 85 ]]
-        expect(getMatrixProduct(x2, y2)).toEqual(res2)
-
-        const x3 = [
-            [1, -2, 3, 9], 
-            [2, 4, 5, 8],
-            [8, 3, 1, 9],
-        ]
-        
-        const y3 = [
-            [1, -8, 3, 4, 2], 
-            [2, 4, 5, 2, 8],
-            [8, -9, 1, 9, 3],
-            [2, 4, 5, 7, 7],
-        ]
-
-        const res3 = [[ 39, -7, 41, 90, 58], [ 66, -13, 71, 117, 107 ], [ 40, -25, 85, 110, 106 ]]
-        expect(getMatrixProduct(x3, y3)).toEqual(res3)
     })
 })
 
-`Ftq cguow ndaiz raj vgybe ahqd ftq xmlk pas. Ftq ruhq najuzsiulmdpe vgyb cguowxk.`

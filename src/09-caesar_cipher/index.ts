@@ -1,4 +1,4 @@
-export const getDecryptedCharacter = (char: string, step: number) => {
+const getDecryptedCharacter = (char: string, step: number) => {
     
     if (char.length !== 1) throw `${char} is not a single character`
 
@@ -18,23 +18,6 @@ export const getDecryptedCharacter = (char: string, step: number) => {
 const isUppercase = (char: string) => char === char.toLocaleUpperCase()
 
 
-const getDecryptedSentence = (sentence: string, step: number) => {
+export const getDecryptedSentence = (sentence: string, step: number) => {
     return sentence.split('').reduce((acc, curr) => acc += getDecryptedCharacter(curr, step), '')
 }
-
-const v1 = `Ftq cguow ndaiz raj
-vgybe ahqd ftq xmlk pas.
-Ftq ruhq najuzs
-iulmdpe vgyb cguowxk.
-`
-
-const v2 = `
-Dear Julius,
-Let us meet near
-the Theatre of Pompey
-at sundown.
-Ave Caesar!
-
-`
-const res = getDecryptedSentence(v1, -12)
-console.log(res)
