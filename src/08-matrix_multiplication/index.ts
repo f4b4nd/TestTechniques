@@ -1,32 +1,10 @@
-const main = () => {
-
-    const x = [
-        [1, 2, 3, 9], 
-        [2, 4, 5, 8],
-        [8, 3, 1, 9],
-    ]
-    
-    const y = [
-        [1, 8, 3], 
-        [2, 4, 5],
-        [8, 9, 1],
-        [2, 4, 5],
-    ]
-
-    return getMatrixProduct(x, y)
-
-}
-
-
 const getNumberOfRows = (matrix: number[][]): number => {
     return matrix.length
 }
 
-
 const getNumberOfColumns = (matrix: number[][]): number => {
     return matrix[0].length
 }
-
 
 const hasFixedColumnsLength = (matrix: number[][]): boolean => {
 
@@ -38,12 +16,10 @@ const hasFixedColumnsLength = (matrix: number[][]): boolean => {
 
 }
 
-
 const isValidMatrix = (matrix:  number[][]): boolean => {
     // other conditions ?
     return hasFixedColumnsLength(matrix)
 }
-
 
 const areMultipliable = (a: number[][], b: number[][]) => {
 
@@ -54,13 +30,11 @@ const areMultipliable = (a: number[][], b: number[][]) => {
     return match1 && match2
 }
 
-
 const getEmptyMatrix = (nrows: number, ncolumns: number) => {
     const rows = Array(ncolumns).fill(NaN)
     const matrix = Array(nrows).fill(rows)
     return matrix
 }
-
 
 export const getMatrixProduct = (a: number[][], b: number[][]) => {
 
@@ -87,8 +61,27 @@ export const getMatrixProduct = (a: number[][], b: number[][]) => {
 }
 
 
+const main = () => {
 
-const a = main()
-console.log(a)
+    const x = [
+        [1, 2, 3, 9], 
+        [2, 4, 5, 8],
+        [8, 3, 1, 9],
+    ]
+    
+    const y = [
+        [1, 8, 3], 
+        [2, 4, 5],
+        [8, 9, 1],
+        [2, 4, 5],
+    ]
+
+    const res = getMatrixProduct(x, y)
+    console.log(res)
+    return res
+
+}
+
+main()
 
 
