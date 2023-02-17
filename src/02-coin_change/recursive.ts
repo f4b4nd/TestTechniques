@@ -1,14 +1,14 @@
-type FormattedSolution = {
+type SolutionAsObject = {
 	[key : number]: number
 }
 
-type SolutionsList = {
-	[key: number]: number[] 
+type SolutionByAmount = {
+	[amount: number]: number[] 
 }
 
 export const minOfSubArrays = (arr: number[][]): number[] => (
 	arr.reduce((acc, curr) => {
-		const currIsMin = acc.length === 0 || curr.length < acc.length
+		const currIsMin: boolean = acc.length === 0 || curr.length < acc.length
 		return curr && currIsMin ? curr : acc
 	}, [])
 )
@@ -16,16 +16,16 @@ export const minOfSubArrays = (arr: number[][]): number[] => (
 export const getOccurencesByValue = (arr: number[]) => (
 	arr.reduce((acc, curr) => (
 		{...acc, [curr]: curr in acc ? acc[curr] + 1 : 1}
-	), {} as FormattedSolution)
+	), {} as SolutionAsObject)
 )
 
 export class Change {
 
-	solutions: SolutionsList
+	minSolutionByAmount: SolutionByAmount
 	coins: number[]
 
 	constructor(coins: number[]) {
-	  	this.solutions = {}
+	  	this.minSolutionByAmount = {}
 		this.coins = coins
 	}
 
@@ -43,17 +43,22 @@ export class Change {
 
 	}
 
+	setMinSolutionByAmount(amount: number, solution: number[]) {
+		this.minSolutionByAmount[amount] = solution
+	}
+
 	getMinSolution(amount: number): number[] {
 
 		const solutions = this.coins.map(coin => this.getSolutionForCoin(amount, coin))
 
-		//console.log('solutions', solutions)
-		//console.log('this.solutions', this.solutions)
+		console.log(amount, 'solutions', solutions)
 		const validSolutions = solutions.filter(solution => !solution.includes(NaN))
 		if (validSolutions.length === 0) return []
 		
 		const minSolution = minOfSubArrays(validSolutions)
-		this.solutions[amount] = minSolution
+
+		this.setMinSolutionByAmount(amount, minSolution)
+
 		return minSolution
 
 	}
@@ -67,13 +72,13 @@ export class Change {
 		if (amountLeft === 0) return [coin]
 
 		// lookup from cache if possible
-		const cacheSolutionForAmountLeft = this.solutions[amountLeft]
+		const cacheMinSolutionForAmountLeft = this.minSolutionByAmount[amountLeft]
 
-		const solutionForAmountLeft = cacheSolutionForAmountLeft ?? this.getMinSolution(amountLeft)
+		const minSolutionForAmountLeft = cacheMinSolutionForAmountLeft ?? this.getMinSolution(amountLeft)
 		
-		if (solutionForAmountLeft.length === 0) return [NaN]
+		if (minSolutionForAmountLeft.length === 0) return [NaN]
 
-		return [coin, ...solutionForAmountLeft]
+		return [coin, ...minSolutionForAmountLeft]
 
 	}
 

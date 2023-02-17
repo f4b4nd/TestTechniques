@@ -10,4 +10,4 @@ const coins = [2, 5, 10]
 const changeRecursive = new Change(coins)
 const c = changeRecursive.calculate(amount)
 
-console.log(c, getOccurencesByValue(c))
+console.log(getOccurencesByValue(c))
