@@ -6,10 +6,10 @@ type SolutionsList = {
 	[key: number]: number[] 
 }
 
-export const minOfSubArrays = (arr: number[][]) => (
-	arr.reduce((acc, element) => {
-		if (element && (acc.length === 0 || element.length < acc.length)) return element
-		return acc
+export const minOfSubArrays = (arr: number[][]): number[] => (
+	arr.reduce((acc, curr) => {
+		const currIsMin = acc.length === 0 || curr.length < acc.length
+		return curr && currIsMin ? curr : acc
 	}, [])
 )
 
@@ -22,18 +22,20 @@ export const getOccurencesByValue = (arr: number[]) => (
 export class Change {
 
 	solutions: SolutionsList
+	coins: number[]
 
-	constructor() {
+	constructor(coins: number[]) {
 	  	this.solutions = {}
+		this.coins = coins
 	}
 
-	calculate(coins: number[], amount: number): number[] {
+	calculate(amount: number): number[] {
 
 		if (amount < 0) throw 'Negative totals are not allowed.'
 
 		if (amount === 0) return []
 
-		const solution = this.getMinSolution(coins, amount)
+		const solution = this.getMinSolution(amount)
 
 		if (solution.length === 0) throw `${amount} cannot be represented in the given currency.`
 
@@ -41,9 +43,9 @@ export class Change {
 
 	}
 
-	getMinSolution(coins: number[], amount: number): number[] {
+	getMinSolution(amount: number): number[] {
 
-		const solutions = coins.map(coin => this.getSolutionForCoin(amount, coin, coins))
+		const solutions = this.coins.map(coin => this.getSolutionForCoin(amount, coin))
 
 		//console.log('solutions', solutions)
 		//console.log('this.solutions', this.solutions)
@@ -56,7 +58,7 @@ export class Change {
 
 	}
 
-	getSolutionForCoin(amount: number, coin: number, coins: number[]): number[] {
+	getSolutionForCoin(amount: number, coin: number): number[] {
 
 		const amountLeft = amount - coin
 
@@ -67,7 +69,7 @@ export class Change {
 		// lookup from cache if possible
 		const cacheSolutionForAmountLeft = this.solutions[amountLeft]
 
-		const solutionForAmountLeft = cacheSolutionForAmountLeft ?? this.getMinSolution(coins, amountLeft)
+		const solutionForAmountLeft = cacheSolutionForAmountLeft ?? this.getMinSolution(amountLeft)
 		
 		if (solutionForAmountLeft.length === 0) return [NaN]
 
