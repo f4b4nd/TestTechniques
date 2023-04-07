@@ -32,7 +32,10 @@
     "test-08": "jest -- ./src/08-*/*.test.ts",
 
     "script-09": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/09-*/index.ts",
-    "test-09": "jest -- ./src/09-*/*.test.ts"
+    "test-09": "jest -- ./src/09-*/*.test.ts",
+
+    "script-10": "node --experimental-specifier-resolution=node --loader ts-node/esm ./src/10-*/index.ts",
+    "test-10": "jest -- ./src/10-*/*.test.ts"
 
   },
   "devDependencies": {
