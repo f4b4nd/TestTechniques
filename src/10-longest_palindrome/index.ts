@@ -6,16 +6,12 @@ const isPalindrome = (s: string): boolean => {
 
     let startIdx = 0
     let endIdx = s.length - 1
-    let res = true
     while (startIdx < endIdx) {
-        if (s[startIdx] !== s[endIdx]) {
-            res = false
-            break
-        }
+        if (s[startIdx] !== s[endIdx]) return false
         startIdx += 1
         endIdx -= 1
     }
-    return res
+    return true
 }
 
 const getPalindromesOfSize = (s: string, size: number): Array<string> => {
@@ -29,11 +25,13 @@ const getPalindromesOfSize = (s: string, size: number): Array<string> => {
     return palindromes
 }
 
-export const getSubstrings = (s: string, size: number) => s.split('').reduce((acc, _, i) => {
-    if (size + i > s.length) return acc
-    const substring = s.substring(i, size + i)
-    return [...acc, substring]
-}, [] as Array<string>)
+export const getSubstrings = (s: string, size: number) => (
+    s.split('').reduce((acc, _, i) => {
+        if (size + i > s.length) return acc
+        const substring = s.substring(i, size + i)
+        return [...acc, substring]
+    }, [] as Array<string>)
+)
 
 export const getLongestPalindrome = (s: string): string => {
     let size = s.length
