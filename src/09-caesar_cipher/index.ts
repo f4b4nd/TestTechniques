@@ -9,8 +9,8 @@ const getDecryptedCharacter = (char: string, key: number): string => {
 
     if (charIndex === -1) return char
 
-    const newIndex = getPivotIndex(alphabetArray.length, charIndex, key)
-    const newChar = alphabetArray[newIndex]
+    const newCharIndex = getPivotIndex(alphabetArray.length, charIndex, key)
+    const newChar = alphabetArray[newCharIndex]
 
     return isUppercase(char) ? newChar.toLocaleUpperCase() : newChar     
 
@@ -19,14 +19,9 @@ const getDecryptedCharacter = (char: string, key: number): string => {
 const isUppercase = (char: string) => char === char.toLocaleUpperCase()
 
 const getPivotIndex = (arrayLength: number, currIndex: number, key: number): number => {
-    /*
-    const a = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-    const currIndex = 4
-    const k = -8
-    const res = Math.abs(a.length - (k + currIndex))
-    const res2 = Math.abs(a.length + k - currIndex) //9 - 8 + 4
-    */
+
     const sumIndex = currIndex + key
+    
     if (0 <= sumIndex  && sumIndex <= arrayLength) {
         return sumIndex
     }
@@ -42,6 +37,6 @@ const getPivotIndex = (arrayLength: number, currIndex: number, key: number): num
 
 }
 
-export const getDecryptedSentence = (sentence: string, key: number) => {
-    return sentence.split('').reduce((acc, curr) => acc += getDecryptedCharacter(curr, key), '')
-}
+export const getDecryptedSentence = (sentence: string, key: number): string => (
+    sentence.split('').reduce((acc, curr) => acc += getDecryptedCharacter(curr, key), '')
+)
