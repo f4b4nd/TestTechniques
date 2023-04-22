@@ -1,18 +1,15 @@
-const getDecryptedCharacter = (char: string, cipherKey: number): string => {
+const getDecryptedCharacter = (char: string, cipherKey: number, alphabet: string[]): string => {
     
     if (char.length !== 1) throw `${char} is not a single character`
 
-    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
-    const alphabetArray = alphabet.split('')
-
-    const charIndex = alphabetArray.findIndex(c => c === char.toLocaleLowerCase())
+    const charIndex = alphabet.findIndex(c => c.toLocaleLowerCase() === char.toLocaleLowerCase())
 
     if (charIndex === -1) return char
 
-    const cipherCharIndex = getCipherIndex(alphabetArray.length, charIndex, cipherKey)
-    const cipherChar = alphabetArray[cipherCharIndex]
+    const decryptedCharIndex = getCipherIndex(alphabet.length, charIndex, cipherKey)
+    const decryptedChar = alphabet[decryptedCharIndex]
 
-    return isUppercase(char) ? cipherChar.toLocaleUpperCase() : cipherChar     
+    return isUppercase(char) ? decryptedChar.toLocaleUpperCase() : decryptedChar     
 
 }
 
@@ -37,6 +34,13 @@ const getCipherIndex = (alphabetLength: number, currentIndex: number, cipherKey:
 
 }
 
-export const getDecryptedMessage = (message: string, cipherKey: number): string => (
-    message.split('').reduce((acc, char) => acc += getDecryptedCharacter(char, cipherKey), '')
-)
+export const getDecryptedMessage = (message: string, cipherKey: number): string => {
+
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz'
+    const alphabetArray = alphabet.split('')
+
+    return message.split('').reduce((acc, char) => (
+        acc += getDecryptedCharacter(char, cipherKey, alphabetArray)
+    ), '')
+    
+}
