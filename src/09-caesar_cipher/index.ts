@@ -9,7 +9,7 @@ const getDecryptedCharacter = (char: string, cipherKey: number, alphabet: string
     const decryptedCharIndex = getCipherIndex(alphabet.length, charIndex, cipherKey)
     const decryptedChar = alphabet[decryptedCharIndex]
 
-    return isUppercase(char) ? decryptedChar.toLocaleUpperCase() : decryptedChar     
+    return isUppercase(char) ? decryptedChar.toLocaleUpperCase() : decryptedChar.toLocaleLowerCase()     
 
 }
 
