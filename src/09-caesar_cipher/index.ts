@@ -1,4 +1,4 @@
-const getDecryptedCharacter = (char: string, key: number): string => {
+const getDecryptedCharacter = (char: string, cipherKey: number): string => {
     
     if (char.length !== 1) throw `${char} is not a single character`
 
@@ -9,34 +9,34 @@ const getDecryptedCharacter = (char: string, key: number): string => {
 
     if (charIndex === -1) return char
 
-    const newCharIndex = getPivotIndex(alphabetArray.length, charIndex, key)
-    const newChar = alphabetArray[newCharIndex]
+    const cipherCharIndex = getCipherIndex(alphabetArray.length, charIndex, cipherKey)
+    const cipherChar = alphabetArray[cipherCharIndex]
 
-    return isUppercase(char) ? newChar.toLocaleUpperCase() : newChar     
+    return isUppercase(char) ? cipherChar.toLocaleUpperCase() : cipherChar     
 
 }
 
 const isUppercase = (char: string) => char === char.toLocaleUpperCase()
 
-const getPivotIndex = (arrayLength: number, currIndex: number, key: number): number => {
+const getCipherIndex = (alphabetLength: number, currentIndex: number, cipherKey: number): number => {
 
-    const sumIndex = currIndex + key
+    const sumIndex = currentIndex + cipherKey
     
-    if (0 <= sumIndex  && sumIndex <= arrayLength) {
+    if (0 <= sumIndex  && sumIndex <= alphabetLength) {
         return sumIndex
     }
-    else if (sumIndex > arrayLength) {
-        // k > 0
-        return Math.abs(arrayLength - (key + currIndex))
+    else if (sumIndex > alphabetLength) {
+        // cipherKey > 0
+        return Math.abs(alphabetLength - (cipherKey + currentIndex))
     }
     else if (sumIndex < 0) {
-        // k < 0
-        return arrayLength + key + currIndex
+        // cipherKey < 0
+        return alphabetLength + cipherKey + currentIndex
     }
-    throw 'no pivot index'
+    throw 'no cipher index'
 
 }
 
-export const getDecryptedSentence = (sentence: string, key: number): string => (
-    sentence.split('').reduce((acc, curr) => acc += getDecryptedCharacter(curr, key), '')
+export const getDecryptedMessage = (message: string, cipherKey: number): string => (
+    message.split('').reduce((acc, char) => acc += getDecryptedCharacter(char, cipherKey), '')
 )
