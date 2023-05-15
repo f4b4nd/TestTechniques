@@ -18,6 +18,6 @@ WORKDIR $WORK_DIR
 
 USER $USER
 
-COPY ./package.json .
+COPY ./app/package.json .
 
 RUN npm install
