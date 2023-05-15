@@ -3,8 +3,8 @@ const getDecryptedCharacter = (char: string, cipherKey: number, alphabet: string
     if (char.length !== 1) throw `${char} is not a single character`
 
     const charIndex = alphabet.findIndex(c => c.toLocaleLowerCase() === char.toLocaleLowerCase())
-
-    if (charIndex === -1) return char
+    const noMatch = charIndex === -1
+    if (noMatch) return char
 
     const decryptedCharIndex = getCipherIndex(alphabet.length, charIndex, cipherKey)
     const decryptedChar = alphabet[decryptedCharIndex]
